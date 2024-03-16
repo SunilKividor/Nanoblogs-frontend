@@ -7,20 +7,66 @@ part of 'router.dart';
 // **************************************************************************
 
 List<RouteBase> get $appRoutes => [
-      $loginScreenRoute,
+      $onboardingScreenRoute,
     ];
 
-RouteBase get $loginScreenRoute => GoRouteData.$route(
-      path: '/login',
-      factory: $LoginScreenRouteExtension._fromState,
+RouteBase get $onboardingScreenRoute => GoRouteData.$route(
+      path: '/onboarding',
+      factory: $OnboardingScreenRouteExtension._fromState,
+      routes: [
+        GoRouteData.$route(
+          path: 'login',
+          factory: $LoginScreenRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'signup',
+          factory: $SignUpScreenRouteExtension._fromState,
+        ),
+      ],
     );
+
+extension $OnboardingScreenRouteExtension on OnboardingScreenRoute {
+  static OnboardingScreenRoute _fromState(GoRouterState state) =>
+      const OnboardingScreenRoute();
+
+  String get location => GoRouteData.$location(
+        '/onboarding',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
 
 extension $LoginScreenRouteExtension on LoginScreenRoute {
   static LoginScreenRoute _fromState(GoRouterState state) =>
       const LoginScreenRoute();
 
   String get location => GoRouteData.$location(
-        '/login',
+        '/onboarding/login',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $SignUpScreenRouteExtension on SignUpScreenRoute {
+  static SignUpScreenRoute _fromState(GoRouterState state) =>
+      const SignUpScreenRoute();
+
+  String get location => GoRouteData.$location(
+        '/onboarding/signup',
       );
 
   void go(BuildContext context) => context.go(location);
@@ -37,7 +83,7 @@ extension $LoginScreenRouteExtension on LoginScreenRoute {
 // RiverpodGenerator
 // **************************************************************************
 
-String _$routerHash() => r'a706cb1e1e59037e179f7ecf63ab6adb5116d2cc';
+String _$routerHash() => r'9d939427db84a5d32807c9c5b5f219bdaa8d67ca';
 
 /// See also [router].
 @ProviderFor(router)

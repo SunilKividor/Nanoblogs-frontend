@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nanoblogs/src/config/routes/router.dart';
+import 'package:nanoblogs/src/config/theme/theme.dart';
 
 class MyApp extends ConsumerWidget {
   const MyApp({super.key});
@@ -12,6 +13,7 @@ class MyApp extends ConsumerWidget {
       debugShowCheckedModeBanner: false,
       title: 'NanoBlogs',
       routerConfig: router,
+      theme: lightThemeData,
     );
   }
 }

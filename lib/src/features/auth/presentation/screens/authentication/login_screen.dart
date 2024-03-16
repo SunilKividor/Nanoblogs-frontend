@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:nanoblogs/src/features/auth/presentation/widgets/animated_banner.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -14,7 +13,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return const Scaffold(
       body: Column(
         children: [
-          AnimatedBanner(title: 'Login',),
+          Text('Login Page')
         ],
       )
     );
