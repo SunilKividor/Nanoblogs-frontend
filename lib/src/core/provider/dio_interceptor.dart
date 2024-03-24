@@ -1,6 +1,8 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:nanoblogs/src/core/constants/env.dart';
 import 'package:nanoblogs/src/features/common/provider/local_db.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -8,7 +10,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'dio_interceptor.g.dart';
 
 @Riverpod(keepAlive:true)
-Dio dio(DioRef ref) {
+Dio dio(DioRef ref,{bool useIsolate = false}) {
   final dio = Dio()
     ..options.baseUrl = Env.endpoint
     ..options.contentType = 'application/json'
@@ -27,5 +29,16 @@ Dio dio(DioRef ref) {
         }
       )
     ]);
+      if (useIsolate) {
+    dio.transformer = (BackgroundTransformer()..jsonDecodeCallback = parseJson);
+  }
     return dio;
+}
+
+Future<Map<String, dynamic>> parseJson(String text) {
+  return compute(_parseAndDecode, text);
+}
+
+Map<String, dynamic> _parseAndDecode(String response) {
+  return jsonDecode(response) as Map<String, dynamic>;
 }
