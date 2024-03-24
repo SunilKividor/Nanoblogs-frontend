@@ -1,18 +1,29 @@
-
+import 'package:nanoblogs/src/core/resources/api_response.dart';
+import 'package:nanoblogs/src/core/resources/base_api_repository.dart';
+import 'package:nanoblogs/src/features/auth/data_source/models/auth_models.dart';
+import 'package:nanoblogs/src/features/auth/data_source/remote/auth_source.dart';
 import 'package:nanoblogs/src/features/auth/domain/entities/auth_entities.dart';
 import 'package:nanoblogs/src/features/auth/domain/repository/auth_repo.dart';
 
-class AuthRepositoryImple implements AuthRepository {
+class AuthRepositoryImpl with BaseApiRepository implements AuthRepository {
+  final AuthSource source;
+
+  AuthRepositoryImpl({required this.source});
   @override
-  Future<AuthResBodyEntity> login(LoginReqBodyEntity loginReqBodyEntity) {
-    // TODO: implement login
-    throw UnimplementedError();
+  Future<ApiRes<AuthResBodyEntity>> login(
+      LoginReqBodyEntity loginReqBodyEntity) {
+    return getApiResponse<AuthResBodyModel>(
+      request: () => source.login(
+        body: LoginReqBodyModel(
+            username: loginReqBodyEntity.username,
+            password: loginReqBodyEntity.password),
+      ),
+    );
   }
 
   @override
-  Future<AuthResBodyEntity> signup(SignUpReqBodyEntity signUpReqBodyEntity) {
+  Future<ApiRes<AuthResBodyEntity>> signup(SignUpReqBodyEntity signUpReqBodyEntity) {
     // TODO: implement signup
     throw UnimplementedError();
   }
-
 }

@@ -17,7 +17,6 @@ class LoginReqBodyModel extends LoginReqBodyEntity with _$LoginReqBodyModel{
       _$LoginReqBodyModelFromJson(json);
 }
 
-//do signup
 @freezed
 class SignupReqBodyModel extends SignUpReqBodyEntity with _$SignupReqBodyModel {
   factory SignupReqBodyModel({
