@@ -6,6 +6,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:nanoblogs/src/core/resources/api_response.dart';
+import 'package:nanoblogs/src/core/utils/logger.dart';
 import 'package:retrofit/retrofit.dart';
 
 mixin BaseApiRepository {
@@ -13,8 +14,10 @@ mixin BaseApiRepository {
   Future<ApiRes<T>> getApiResponse<T>({
     required Future<HttpResponse<T>> Function() request,
   }) async {
+    logger.d("Entered getApiRes");
     try {
       final httpResponse = await request();
+      logger.d("httpResponse : $httpResponse");
       final status = httpResponse.response.statusCode ?? 400;
       if (status < HttpStatus.badRequest) {
         return Right(httpResponse.data);

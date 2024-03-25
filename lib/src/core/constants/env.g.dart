@@ -9,5 +9,5 @@ part of 'env.dart';
 // coverage:ignore-file
 // ignore_for_file: type=lint
 final class _Env {
-  static const String endpoint = 'localhost:8080';
+  static const String endpoint = 'http://192.168.54.253:3000';
 }

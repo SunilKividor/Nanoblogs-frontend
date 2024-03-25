@@ -5,11 +5,14 @@ import 'package:nanoblogs/src/features/auth/presentation/screens/authentication/
 import 'package:nanoblogs/src/features/auth/presentation/screens/authentication/sign_up.dart';
 import 'package:nanoblogs/src/features/auth/presentation/screens/onboarding/onboarding.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:nanoblogs/src/config/routes/router.dart';
+import 'package:nanoblogs/src/features/home/presentation/screens/home_screen.dart';
 
 export 'package:go_router/go_router.dart';
 
 part 'router.g.dart';
 part 'auth_routes.dart';
+part 'home_routes.dart';
 
 @Riverpod(keepAlive:true)
 GoRouter router(RouterRef ref){

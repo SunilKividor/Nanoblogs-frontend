@@ -32,6 +32,7 @@ class Auth extends _$Auth {
   void build(){}
 
   Future<bool> login(LoginReqBodyEntity loginReqBodyEntity) async {
+    logger.d("Entered Auth Login");
     final res = await ref.read(loginUsecaseProvider).call(loginReqBodyEntity);
     return res.fold((l) => false, (r) async{
       await ref.read(credentialStorageProvider).setAccessToken(r.accessToken);

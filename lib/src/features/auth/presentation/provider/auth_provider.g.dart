@@ -35,7 +35,7 @@ final loginUsecaseProvider = AutoDisposeProvider<LoginUsecase>.internal(
 );
 
 typedef LoginUsecaseRef = AutoDisposeProviderRef<LoginUsecase>;
-String _$authHash() => r'f94f0463c1b2db9d3ae47ecd2d31946d946753ce';
+String _$authHash() => r'987f2a142b45e3831dcbc8b7c4fc48ef11e6e1fc';
 
 /// See also [Auth].
 @ProviderFor(Auth)

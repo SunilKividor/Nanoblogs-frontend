@@ -8,6 +8,7 @@ part of 'router.dart';
 
 List<RouteBase> get $appRoutes => [
       $onboardingScreenRoute,
+      $homeScreenRoute,
     ];
 
 RouteBase get $onboardingScreenRoute => GoRouteData.$route(
@@ -67,6 +68,29 @@ extension $SignUpScreenRouteExtension on SignUpScreenRoute {
 
   String get location => GoRouteData.$location(
         '/onboarding/signup',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $homeScreenRoute => GoRouteData.$route(
+      path: '/onboarding',
+      factory: $HomeScreenRouteExtension._fromState,
+    );
+
+extension $HomeScreenRouteExtension on HomeScreenRoute {
+  static HomeScreenRoute _fromState(GoRouterState state) =>
+      const HomeScreenRoute();
+
+  String get location => GoRouteData.$location(
+        '/onboarding',
       );
 
   void go(BuildContext context) => context.go(location);

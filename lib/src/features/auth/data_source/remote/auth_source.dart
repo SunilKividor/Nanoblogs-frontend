@@ -9,7 +9,7 @@ part 'auth_source.g.dart';
 abstract class AuthSource {
   factory AuthSource(Dio dio) = _AuthSource;
 
-  @POST('auth/login')
+  @POST('/auth/login')
   Future<HttpResponse<AuthResBodyModel>> login({
     @Body() required LoginReqBodyModel body,
   });

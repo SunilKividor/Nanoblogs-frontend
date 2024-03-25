@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:nanoblogs/src/core/constants/env.dart';
+import 'package:nanoblogs/src/core/utils/logger.dart';
 import 'package:nanoblogs/src/features/common/provider/local_db.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -22,6 +23,7 @@ Dio dio(DioRef ref,{bool useIsolate = false}) {
           return handler.next(options);
         },
         onError: (DioException e, handler) {
+          logger.d("error : ${e.message} -- ${e.error} -- ${e.response}");
           if(e.response?.statusCode == HttpStatus.unauthorized){
             //update the access token by refreshing 
           }
